@@ -20,8 +20,6 @@ function renderCard(card, index) {
   if (card.synthesis) {
     freqHz = card.synthesis.modHz || card.synthesis.beatHz || card.synthesis.centerHz || '';
   }
-  if (card.id === 'tinnitus-notch') freqHz = 'VAR';
-  if (card.id === 'white-noise-adhd') freqHz = 'W/N';
   if (card.id === 'vibroacoustic-40') freqHz = '40';
 
   const freqReadout = freqHz 
