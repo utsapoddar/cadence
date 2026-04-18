@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cadence — Evidence-Based Tones</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Cadence</h1>
+    <p class="tagline">Therapeutic tones with citations. Not a medical device.</p>
+  </header>
+  <main id="cards">
+    <div id="audio-banner" hidden>Tap any card to enable audio.</div>
+  </main>
+  <dialog id="tinnitus-modal">
+    <h2>Match your tinnitus pitch</h2>
+    <p>Adjust the slider until the tone matches the pitch of your tinnitus. Keep the volume low.</p>
+    <input id="tinnitus-slider" type="range" min="100" max="8000" step="10" value="4000">
+    <output id="tinnitus-freq">4000 Hz</output>
+    <div class="modal-actions">
+      <button id="tinnitus-cancel">Cancel</button>
+      <button id="tinnitus-save">This matches</button>
+    </div>
+  </dialog>
+  <footer>
+    <p>Every card links to its peer-reviewed source. Not a substitute for professional care.</p>
+  </footer>
+  <script type="module" src="ui.js"></script>
+</body>
+</html>

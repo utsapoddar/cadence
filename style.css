@@ -1,0 +1,24 @@
+:root { --bg:#0f1115; --fg:#e6e6e6; --accent:#7fd1ff; --muted:#8a8f98; --card:#1a1d23; }
+* { box-sizing: border-box; }
+body { margin:0; font-family: system-ui, -apple-system, sans-serif; background:var(--bg); color:var(--fg); line-height:1.5; }
+header, footer { padding: 1.5rem; text-align:center; }
+.tagline { color:var(--muted); margin:0; }
+main { max-width: 720px; margin: 0 auto; padding: 1rem; display:grid; gap:1rem; }
+.card { background:var(--card); border-radius: 12px; padding: 1.25rem; }
+.card h2 { margin: 0 0 .25rem; font-size: 1.15rem; }
+.card .dose { color: var(--muted); font-size: .9rem; }
+.card .tier { display:inline-block; padding: 2px 8px; border-radius: 999px; font-size:.75rem; margin-left:.5rem; }
+.tier.A { background:#1b5e20; } .tier.B { background:#33691e; } .tier.C { background:#4e342e; }
+.card .cite { display:block; color:var(--accent); font-size:.85rem; margin-top:.5rem; text-decoration:none; }
+.card button { background:var(--accent); color:#000; border:0; padding:.5rem 1rem; border-radius:8px; cursor:pointer; margin-top:.75rem; }
+.card button[disabled] { opacity:.5; cursor:not-allowed; }
+.card.info-only { opacity:.85; }
+.card .disclosure { background:#3a1e1e; padding:.5rem .75rem; border-radius:6px; font-size:.85rem; margin-top:.5rem; }
+.card .remaining { color: var(--muted); font-size:.85rem; margin-top:.5rem; }
+#audio-banner { background: var(--card); border: 1px solid var(--muted); padding:.5rem; text-align:center; border-radius:8px; margin-bottom:1rem; }
+dialog { background: var(--card); color: var(--fg); border: 0; border-radius: 12px; padding: 1.5rem; max-width: 400px; }
+dialog::backdrop { background: rgba(0,0,0,.6); }
+dialog input[type="range"] { width: 100%; }
+dialog .modal-actions { display:flex; gap:.5rem; margin-top:1rem; justify-content:flex-end; }
+dialog button { background:var(--accent); color:#000; border:0; padding:.5rem 1rem; border-radius:8px; cursor:pointer; }
+dialog #tinnitus-cancel { background:transparent; color:var(--fg); border:1px solid var(--muted); }
