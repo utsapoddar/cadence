@@ -140,11 +140,14 @@ function animateFreqLock(id) {
   if (!window.gsap) return;
   const card = document.querySelector(`.card[data-id="${id}"]`);
   if (!card) return;
+  gsap.fromTo(card,
+    { scale: 1 },
+    { scale: 1.03, duration: 0.18, yoyo: true, repeat: 1, ease: 'power2.inOut' });
   const readout = card.querySelector('.freq-readout');
   if (readout) {
     gsap.fromTo(readout,
-      { opacity: 0.25, filter: 'blur(6px)' },
-      { opacity: 1, filter: 'blur(0)', duration: 0.55, ease: 'power2.out' });
+      { opacity: 0.1, filter: 'blur(10px)', scale: 1.15 },
+      { opacity: 1, filter: 'blur(0)', scale: 1, duration: 0.7, ease: 'power2.out' });
   }
   const value = card.querySelector('.freq-readout .value');
   if (value) {
@@ -154,7 +157,7 @@ function animateFreqLock(id) {
       const originalText = value.textContent;
       gsap.to(obj, {
         n: target,
-        duration: 0.7,
+        duration: 0.9,
         ease: 'power3.out',
         onUpdate: () => { value.textContent = target < 10 ? obj.n.toFixed(1) : Math.round(obj.n); },
         onComplete: () => { value.textContent = originalText; }
@@ -166,17 +169,42 @@ function animateFreqLock(id) {
     const len = notch.getTotalLength ? notch.getTotalLength() : 200;
     gsap.fromTo(notch,
       { strokeDasharray: len, strokeDashoffset: len },
-      { strokeDashoffset: 0, duration: 1.1, ease: 'power2.inOut' });
+      { strokeDashoffset: 0, duration: 1.2, ease: 'power2.inOut' });
+  }
+  const bars = card.querySelectorAll('.spectrogram span');
+  if (bars.length) {
+    gsap.fromTo(bars,
+      { scaleY: 0.1, transformOrigin: 'bottom' },
+      { scaleY: 1, duration: 0.4, stagger: 0.02, ease: 'back.out(2)' });
   }
 }
 
 function animateEntrance() {
+  if (!window.gsap) { console.warn('[cadence] GSAP not loaded'); return; }
+  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+  tl.from('.mast-meta', { y: -20, opacity: 0, duration: 0.6 })
+    .from('.wordmark', { y: -80, opacity: 0, scale: 0.85, duration: 1.1, ease: 'elastic.out(1, 0.65)' }, '-=0.25')
+    .from('.tagline', { y: 20, opacity: 0, duration: 0.6 }, '-=0.5')
+    .from('.legend-item', { y: 16, opacity: 0, duration: 0.45, stagger: 0.08 }, '-=0.3')
+    .from('.card', {
+      y: 60, opacity: 0, scale: 0.9,
+      duration: 0.75, stagger: 0.09,
+      ease: 'back.out(1.4)'
+    }, '-=0.2');
+}
+
+function attachCardHover() {
   if (!window.gsap) return;
-  gsap.from('.mast-meta, .wordmark, .tagline, .legend', {
-    y: 18, opacity: 0, duration: 0.75, stagger: 0.07, ease: 'power3.out'
-  });
-  gsap.from('.card', {
-    y: 28, opacity: 0, duration: 0.65, stagger: 0.055, ease: 'power3.out', delay: 0.25
+  document.querySelectorAll('.card').forEach(card => {
+    const head = card.querySelector('.card-head-left') || card.querySelector('.card-head');
+    card.addEventListener('mouseenter', () => {
+      gsap.to(card, { y: -6, scale: 1.015, duration: 0.3, ease: 'power2.out' });
+      if (head) gsap.to(head, { x: 2, duration: 0.3, ease: 'power2.out' });
+    });
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, { y: 0, scale: 1, duration: 0.4, ease: 'power2.out' });
+      if (head) gsap.to(head, { x: 0, duration: 0.4, ease: 'power2.out' });
+    });
   });
 }
 
@@ -236,5 +264,6 @@ async function init() {
   } catch {}
   document.addEventListener('click', () => { banner.hidden = true; }, { once: true });
   animateEntrance();
+  attachCardHover();
 }
 init();
