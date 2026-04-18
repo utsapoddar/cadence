@@ -133,6 +133,51 @@ async function onPlayClick(id) {
   state.activeId = id;
   updateButtons();
   startCountdown();
+  animateFreqLock(id);
+}
+
+function animateFreqLock(id) {
+  if (!window.gsap) return;
+  const card = document.querySelector(`.card[data-id="${id}"]`);
+  if (!card) return;
+  const readout = card.querySelector('.freq-readout');
+  if (readout) {
+    gsap.fromTo(readout,
+      { opacity: 0.25, filter: 'blur(6px)' },
+      { opacity: 1, filter: 'blur(0)', duration: 0.55, ease: 'power2.out' });
+  }
+  const value = card.querySelector('.freq-readout .value');
+  if (value) {
+    const target = parseFloat(value.textContent);
+    if (!isNaN(target)) {
+      const obj = { n: 0 };
+      const originalText = value.textContent;
+      gsap.to(obj, {
+        n: target,
+        duration: 0.7,
+        ease: 'power3.out',
+        onUpdate: () => { value.textContent = target < 10 ? obj.n.toFixed(1) : Math.round(obj.n); },
+        onComplete: () => { value.textContent = originalText; }
+      });
+    }
+  }
+  const notch = card.querySelector('.notch-svg path');
+  if (notch) {
+    const len = notch.getTotalLength ? notch.getTotalLength() : 200;
+    gsap.fromTo(notch,
+      { strokeDasharray: len, strokeDashoffset: len },
+      { strokeDashoffset: 0, duration: 1.1, ease: 'power2.inOut' });
+  }
+}
+
+function animateEntrance() {
+  if (!window.gsap) return;
+  gsap.from('.mast-meta, .wordmark, .tagline, .legend', {
+    y: 18, opacity: 0, duration: 0.75, stagger: 0.07, ease: 'power3.out'
+  });
+  gsap.from('.card', {
+    y: 28, opacity: 0, duration: 0.65, stagger: 0.055, ease: 'power3.out', delay: 0.25
+  });
 }
 
 function updateButtons() {
@@ -190,5 +235,6 @@ async function init() {
     testCtx.close && testCtx.close();
   } catch {}
   document.addEventListener('click', () => { banner.hidden = true; }, { once: true });
+  animateEntrance();
 }
 init();
