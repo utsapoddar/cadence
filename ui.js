@@ -32,7 +32,6 @@ function renderCard(card, index) {
             <circle cx="50" cy="35" r="3" fill="currentColor"/>
           </svg>
         </div>
-        <span class="mode">${card.modality || ''}</span>
       </div>`;
   } else if (card.id === 'white-noise-adhd') {
     freqHz = '';
@@ -43,15 +42,16 @@ function renderCard(card, index) {
             <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
           </div>
         </div>
-        <span class="mode">${card.modality || ''}</span>
       </div>`;
   } else if (card.id === 'vibroacoustic-40') {
     freqHz = '40';
   }
 
   const freqReadoutHTML = specialReadout || (freqHz 
-    ? `<div class="freq-readout"><span class="value">${freqHz}</span><span class="unit">${typeof freqHz === 'number' || freqHz === '40' ? 'Hz' : ''}</span><span class="mode">${card.modality || ''}</span></div>`
+    ? `<div class="freq-readout"><span class="value">${freqHz}</span><span class="unit">${typeof freqHz === 'number' || freqHz === '40' ? 'Hz' : ''}</span></div>`
     : '');
+
+  const modalityLabel = card.modality ? `<span class="mode">${escapeHtml(card.modality)}</span>` : '';
 
   const slot = `<div class="slot">
     <span class="glyph">✧</span>
@@ -91,6 +91,7 @@ function renderCard(card, index) {
     <section class="card${infoClass}" data-id="${card.id}">
       <div class="card-head">
         ${slot}
+        ${modalityLabel}
         ${freqReadoutHTML}
         <h2>${headline}<span class="tier ${card.tier}">Tier ${card.tier}</span></h2>
         <button class="info" data-info="${card.id}" aria-label="Show technical details and studies">i</button>

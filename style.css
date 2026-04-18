@@ -243,6 +243,7 @@ main {
 
 /* slot number + tier in top strip */
 .card-head {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -334,9 +335,14 @@ main {
   color: var(--ink-dim);
   letter-spacing: .05em;
 }
-.freq-readout .mode {
-  margin-left: auto;
-  font-size: .65rem;
+/* modality label — positioned consistently on the right */
+.card-head > .mode {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  font-family: var(--font-mono);
+  font-size: .6rem;
+  font-weight: 500;
   letter-spacing: .12em;
   color: var(--ink-faint);
   text-transform: uppercase;
