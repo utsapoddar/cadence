@@ -39,7 +39,9 @@
     "doseSec": 5400,
     "tier": "B",
     "citations": [
-      { "title": "Auditory stimulation using delta binaural beat for better sleep and mood", "journal": "DIGITAL HEALTH", "year": 2022, "url": "https://journals.sagepub.com/doi/full/10.1177/20552076221102243" }
+      { "title": "Auditory stimulation using delta binaural beat for better sleep and mood", "journal": "DIGITAL HEALTH", "year": 2022, "url": "https://journals.sagepub.com/doi/full/10.1177/20552076221102243" },
+      { "title": "A Novel Insight of Effects of a 3-Hz Binaural Beat on Sleep Stages During Sleep", "journal": "Frontiers in Human Neuroscience", "year": 2018, "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6165862/" },
+      { "title": "Binaural beats at 0.25 Hz shorten the latency to slow-wave sleep during daytime naps", "journal": "Scientific Reports", "year": 2024, "url": "https://www.nature.com/articles/s41598-024-76059-9" }
     ],
     "notes": "Pilot-level evidence. 90 min pre-sleep. Requires headphones."
   },
@@ -53,7 +55,9 @@
     "doseSec": 1800,
     "tier": "B",
     "citations": [
-      { "title": "Brain Responses to a 6-Hz Binaural Beat", "journal": "Frontiers in Neuroscience", "year": 2017, "url": "https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2017.00365/full" }
+      { "title": "Brain Responses to a 6-Hz Binaural Beat", "journal": "Frontiers in Neuroscience", "year": 2017, "url": "https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2017.00365/full" },
+      { "title": "Effects of daily listening to 6 Hz binaural beats over one month: an event-related potentials study", "journal": "Scientific Reports", "year": 2024, "url": "https://www.nature.com/articles/s41598-024-68628-9" },
+      { "title": "Auditory driving of the autonomic nervous system: theta-frequency binaural beats post-exercise", "journal": "Frontiers in Psychology", "year": 2014, "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4231835/" }
     ],
     "notes": "20-30 min. Requires headphones. Stronger evidence when combined with ambient music."
   },
@@ -67,7 +71,9 @@
     "doseSec": 1200,
     "tier": "B",
     "citations": [
-      { "title": "Receptive Music Therapy with Imbedded 10 Hz Binaural Beats for MDD: RCT", "journal": "Complementary Therapies in Clinical Practice", "year": 2021, "url": "https://www.sciencedirect.com/science/article/pii/S0965229921001060" }
+      { "title": "Receptive Music Therapy with Imbedded 10 Hz Binaural Beats for MDD: RCT", "journal": "Complementary Therapies in Clinical Practice", "year": 2021, "url": "https://www.sciencedirect.com/science/article/pii/S0965229921001060" },
+      { "title": "Binaural beats for perioperative anxiety and pain: systematic review & meta-analysis", "journal": "Complementary Therapies in Clinical Practice", "year": 2025, "url": "https://www.sciencedirect.com/science/article/pii/S096522992500175X" },
+      { "title": "The Efficiency of Binaural Beats on Anxiety and Depression — A Systematic Review", "journal": "Applied Sciences (MDPI)", "year": 2024, "url": "https://www.mdpi.com/2076-3417/14/13/5675" }
     ],
     "notes": "10-20 min. Requires headphones."
   },
@@ -81,7 +87,9 @@
     "doseSec": 480,
     "tier": "B",
     "citations": [
-      { "title": "Pilot RCT: binaural beats on study performance and mind-wandering in adult ADHD", "journal": "Frontiers / RG preprint", "year": 2022, "url": "https://www.researchgate.net/publication/363222796" }
+      { "title": "Pilot RCT: binaural beats on study performance and mind-wandering in adult ADHD", "journal": "Frontiers / RG preprint", "year": 2022, "url": "https://www.researchgate.net/publication/363222796" },
+      { "title": "Alpha, Beta, and Gamma Binaural Beat Brain Stimulation on Working Memory: within-subject RCT", "journal": "Neural Plasticity", "year": 2022, "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9153928/" },
+      { "title": "Potential of binaural beats for improving memory and attention: meta-analysis & systematic review", "journal": "Acta Neuropsychologica", "year": 2022, "url": "https://pubmed.ncbi.nlm.nih.gov/35842538/" }
     ],
     "notes": "8 min. Adult ADHD RCT improved subjective study performance only - objective attention measures were unchanged. Requires headphones."
   },
@@ -95,7 +103,8 @@
     "doseSec": null,
     "tier": "C",
     "citations": [
-      { "title": "Vibroacoustic treatment for fibromyalgia: a pilot study", "journal": "Clinical Rheumatology", "year": 2015, "url": "https://pubmed.ncbi.nlm.nih.gov/25124673/" }
+      { "title": "Vibroacoustic treatment for fibromyalgia: a pilot study", "journal": "Clinical Rheumatology", "year": 2015, "url": "https://pubmed.ncbi.nlm.nih.gov/25124673/" },
+      { "title": "Exploring vibroacoustic therapy in adults experiencing pain: a scoping review", "journal": "BMJ Open", "year": 2022, "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8984038/" }
     ],
     "notes": "Validated via tactile vibration through the torso, not audio. Headphone playback is NOT equivalent and will not replicate the effect. Requires a vibroacoustic chair/bed/mat."
   }
