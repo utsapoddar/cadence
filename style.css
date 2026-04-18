@@ -278,11 +278,11 @@ main {
   font-weight: 600;
   letter-spacing: .12em;
   padding: 3px 8px;
-  margin-left: 0.5rem;
   vertical-align: middle;
   border-radius: 2px;
   white-space: nowrap;
   text-transform: uppercase;
+  flex-shrink: 0;
 }
 .tier.A { background: var(--phosphor); color: #0a1400; }
 .tier.B { background: transparent; color: var(--phosphor); border: 1px solid var(--phosphor-deep); }
@@ -353,6 +353,10 @@ main {
   line-height: 1.15;
   letter-spacing: -0.02em;
   color: var(--ink);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
 }
 
 .blurb {
