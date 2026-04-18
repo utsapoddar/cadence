@@ -17,14 +17,41 @@ function escapeHtml(s) {
 function renderCard(card, index) {
   const slotNum = String((index || 0) + 1).padStart(3, '0');
   let freqHz = '';
+  let specialReadout = '';
   if (card.synthesis) {
     freqHz = card.synthesis.modHz || card.synthesis.beatHz || card.synthesis.centerHz || '';
   }
-  if (card.id === 'vibroacoustic-40') freqHz = '40';
+  
+  if (card.id === 'tinnitus-notch') {
+    freqHz = '';
+    specialReadout = `
+      <div class="freq-readout special">
+        <div class="special-graphic" aria-hidden="true">
+          <svg viewBox="0 0 100 40" class="notch-svg" preserveAspectRatio="none">
+            <path d="M0,20 L30,20 C40,20 45,35 50,35 C55,35 60,20 70,20 L100,20" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle cx="50" cy="35" r="3" fill="currentColor"/>
+          </svg>
+        </div>
+        <span class="mode">${card.modality || ''}</span>
+      </div>`;
+  } else if (card.id === 'white-noise-adhd') {
+    freqHz = '';
+    specialReadout = `
+      <div class="freq-readout special">
+        <div class="special-graphic" aria-hidden="true">
+          <div class="spectrogram">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+        <span class="mode">${card.modality || ''}</span>
+      </div>`;
+  } else if (card.id === 'vibroacoustic-40') {
+    freqHz = '40';
+  }
 
-  const freqReadout = freqHz 
+  const freqReadoutHTML = specialReadout || (freqHz 
     ? `<div class="freq-readout"><span class="value">${freqHz}</span><span class="unit">${typeof freqHz === 'number' || freqHz === '40' ? 'Hz' : ''}</span><span class="mode">${card.modality || ''}</span></div>`
-    : '';
+    : '');
 
   const slot = `<div class="slot">
     <span class="glyph">✧</span>
@@ -64,7 +91,7 @@ function renderCard(card, index) {
     <section class="card${infoClass}" data-id="${card.id}">
       <div class="card-head">
         ${slot}
-        ${freqReadout}
+        ${freqReadoutHTML}
         <h2>${headline}<span class="tier ${card.tier}">Tier ${card.tier}</span></h2>
         <button class="info" data-info="${card.id}" aria-label="Show technical details and studies">i</button>
       </div>

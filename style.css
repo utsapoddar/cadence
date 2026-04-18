@@ -342,6 +342,76 @@ main {
   text-transform: uppercase;
 }
 
+/* Special frequency readouts (Non-numeric) */
+.freq-readout.special {
+  align-items: flex-end;
+  height: 3.6rem;
+}
+
+.special-graphic {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  max-width: 140px;
+}
+
+/* Tinnitus Notch SVG */
+.notch-svg {
+  width: 100%;
+  height: 40px;
+  color: var(--phosphor-dim);
+  overflow: visible;
+}
+.notch-svg path {
+  stroke: var(--phosphor);
+  opacity: 0.7;
+}
+.notch-svg circle {
+  animation: pulse-notch 2s infinite alternate;
+}
+@keyframes pulse-notch {
+  0% { opacity: 0.4; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1.3); }
+}
+
+/* White Noise Spectrogram */
+.spectrogram {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 30px;
+  width: 100%;
+}
+.spectrogram span {
+  flex: 1;
+  background: var(--phosphor);
+  opacity: 0.6;
+  animation: noise-bar 0.5s infinite alternate;
+  transform-origin: bottom;
+}
+.spectrogram span:nth-child(1) { animation-duration: 0.4s; height: 60%; }
+.spectrogram span:nth-child(2) { animation-duration: 0.6s; height: 100%; }
+.spectrogram span:nth-child(3) { animation-duration: 0.3s; height: 40%; }
+.spectrogram span:nth-child(4) { animation-duration: 0.7s; height: 80%; }
+.spectrogram span:nth-child(5) { animation-duration: 0.5s; height: 30%; }
+.spectrogram span:nth-child(6) { animation-duration: 0.45s; height: 90%; }
+.spectrogram span:nth-child(7) { animation-duration: 0.35s; height: 50%; }
+.spectrogram span:nth-child(8) { animation-duration: 0.65s; height: 70%; }
+.spectrogram span:nth-child(9) { animation-duration: 0.55s; height: 45%; }
+.spectrogram span:nth-child(10) { animation-duration: 0.4s; height: 85%; }
+.spectrogram span:nth-child(11) { animation-duration: 0.6s; height: 35%; }
+.spectrogram span:nth-child(12) { animation-duration: 0.5s; height: 65%; }
+.spectrogram span:nth-child(13) { animation-duration: 0.3s; height: 50%; }
+.spectrogram span:nth-child(14) { animation-duration: 0.7s; height: 80%; }
+.spectrogram span:nth-child(15) { animation-duration: 0.45s; height: 40%; }
+.spectrogram span:nth-child(16) { animation-duration: 0.55s; height: 90%; }
+
+@keyframes noise-bar {
+  0% { transform: scaleY(0.5); opacity: 0.4; }
+  100% { transform: scaleY(1); opacity: 0.8; }
+}
+
 /* headline */
 .card h2 {
   margin: 0;
