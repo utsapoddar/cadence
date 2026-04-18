@@ -243,12 +243,19 @@ main {
 
 /* slot number + tier in top strip */
 .card-head {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: flex-start;
-  gap: .75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.25rem;
   padding-bottom: .75rem;
   border-bottom: 1px dashed var(--line);
+}
+
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.25rem;
 }
 
 .slot {
@@ -315,7 +322,8 @@ main {
   align-items: baseline;
   gap: .3rem;
   color: var(--ink);
-  padding-top: .25rem;
+  padding-top: 0;
+  margin-bottom: -0.25rem;
 }
 .freq-readout .value {
   font-size: 1.6rem;

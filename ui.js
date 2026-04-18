@@ -61,8 +61,10 @@ function renderCard(card, index) {
   return `
     <section class="card${infoClass}" data-id="${card.id}">
       <div class="card-head">
-        ${slot}
-        ${icon}
+        <div class="meta-row">
+          ${slot}
+          ${icon}
+        </div>
         ${freqReadout}
         <h2>${headline}<span class="tier ${card.tier}">Tier ${card.tier}</span></h2>
         <button class="info" data-info="${card.id}" aria-label="Show technical details and studies">i</button>
