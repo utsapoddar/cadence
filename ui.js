@@ -22,11 +22,13 @@ function renderCard(card) {
     ? `<div class="disclosure">${escapeHtml(card.notes)}</div>` : '';
   const playBtn = card.tier === 'C'
     ? '' : `<button class="play" data-play="${card.id}">Play · ${fmtDose(card.doseSec)}</button>`;
-  const remaining = card.tier === 'C'
-    ? '' : `<div class="remaining" data-remaining="${card.id}"></div>`;
+  const progress = card.tier === 'C' ? '' : `
+    <div class="progress"><div class="fill" data-fill="${card.id}"></div></div>
+    <div class="remaining" data-remaining="${card.id}"></div>`;
   const infoClass = card.tier === 'C' ? ' info-only' : '';
   const headline = escapeHtml(card.headline || card.label);
   const blurb = card.blurb ? `<p class="blurb">${escapeHtml(card.blurb)}</p>` : '';
+  const icon = card.icon ? `<div class="icon" aria-hidden="true">${escapeHtml(card.icon)}</div>` : '';
   const details = `
     <div class="details" data-details="${card.id}" hidden>
       <div class="tech-label">${escapeHtml(card.label)}</div>
@@ -37,13 +39,14 @@ function renderCard(card) {
   return `
     <section class="card${infoClass}" data-id="${card.id}">
       <div class="card-head">
+        ${icon}
         <h2>${headline}<span class="tier ${card.tier}">Tier ${card.tier}</span></h2>
         <button class="info" data-info="${card.id}" aria-label="Show technical details and studies">i</button>
       </div>
       ${blurb}
       ${disclosure}
       ${details}
-      ${remaining}
+      ${progress}
       ${playBtn}
     </section>`;
 }
@@ -80,18 +83,24 @@ function updateButtons() {
     const id = btn.getAttribute('data-play');
     const card = state.data.find(d => d.id === id);
     btn.textContent = id === state.activeId
-      ? 'Stop'
-      : `Play · ${fmtDose(card.doseSec)}`;
+      ? '■ Stop'
+      : `▶ Play · ${fmtDose(card.doseSec)}`;
+  });
+  document.querySelectorAll('.card').forEach(el => {
+    el.classList.toggle('playing', el.getAttribute('data-id') === state.activeId);
   });
 }
 
 function startCountdown() {
   stopCountdown();
+  const card = state.data.find(d => d.id === state.activeId);
+  const total = card ? card.doseSec : 0;
   state.timerInterval = setInterval(() => {
     const el = document.querySelector(`[data-remaining="${state.activeId}"]`);
-    if (!el) return;
+    const fill = document.querySelector(`[data-fill="${state.activeId}"]`);
     const r = Math.ceil(getRemaining());
-    el.textContent = r > 0 ? `${Math.floor(r/60)}:${String(r%60).padStart(2,'0')} remaining` : '';
+    if (el) el.textContent = r > 0 ? `${Math.floor(r/60)}:${String(r%60).padStart(2,'0')} remaining` : '';
+    if (fill && total) fill.style.width = `${Math.min(100, ((total - r) / total) * 100)}%`;
   }, 500);
 }
 
@@ -99,6 +108,7 @@ function stopCountdown() {
   clearInterval(state.timerInterval);
   state.timerInterval = null;
   document.querySelectorAll('.remaining').forEach(el => el.textContent = '');
+  document.querySelectorAll('.progress .fill').forEach(el => el.style.width = '0%');
 }
 
 async function init() {

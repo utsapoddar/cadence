@@ -1,8 +1,9 @@
 [
   {
     "id": "gamma-40",
+    "icon": "🧠",
     "headline": "Sharpen focus & memory",
-    "blurb": "A pulsing tone used in Alzheimer's and attention research. Listen while you work or read.",
+    "blurb": "A pulsing tone used in Alzheimer's, attention, and mood research. Listen while you work or read.",
     "label": "40 Hz gamma — cognition & attention",
     "modality": "am",
     "synthesis": { "carrierHz": 1000, "modHz": 40, "modDepth": 0.5 },
@@ -12,10 +13,11 @@
       { "title": "Gamma sensory stimulation in mild Alzheimer's dementia (GENUS)", "journal": "Alzheimer's & Dementia", "year": 2025, "url": "https://alz-journals.onlinelibrary.wiley.com/doi/10.1002/alz.70792" },
       { "title": "40-Hz binaural beats enhance training to mitigate the attentional blink", "journal": "Scientific Reports", "year": 2020, "url": "https://www.nature.com/articles/s41598-020-63980-y" }
     ],
-    "notes": "MIT GENUS protocol: 1 hr/day. AM-modulated tone because raw 40 Hz is barely audible."
+    "notes": "MIT GENUS protocol: 1 hr/day. AM-modulated tone because raw 40 Hz is barely audible. Small pilot trials also report mood/depression benefits from 40 Hz sensory stimulation."
   },
   {
     "id": "tinnitus-notch",
+    "icon": "🔇",
     "headline": "Quiet your tinnitus",
     "blurb": "Pink noise with a notch removed at your tinnitus pitch. Calibrate once, then listen long-term.",
     "label": "Tinnitus notched pink noise",
@@ -31,6 +33,7 @@
   },
   {
     "id": "delta-3",
+    "icon": "🌙",
     "headline": "Fall into deeper sleep",
     "blurb": "A slow binaural pulse used in sleep studies. Play it as you wind down — headphones on.",
     "label": "3 Hz delta — sleep support",
@@ -47,6 +50,7 @@
   },
   {
     "id": "theta-6",
+    "icon": "🧘",
     "headline": "Calm down & unwind",
     "blurb": "A gentle binaural pulse linked to meditation and anxiety reduction. Headphones on.",
     "label": "6 Hz theta — relaxation",
@@ -63,6 +67,7 @@
   },
   {
     "id": "alpha-10",
+    "icon": "☀️",
     "headline": "Relax & lift mood",
     "blurb": "A binaural pulse studied for mood support and relaxation. Play it during a quiet break.",
     "label": "10 Hz alpha — relaxation / mood",
@@ -79,6 +84,7 @@
   },
   {
     "id": "beta-15",
+    "icon": "📚",
     "headline": "Study-session boost (adult ADHD)",
     "blurb": "A short binaural track trialed with adult ADHD students. Improves how focused you feel — objective attention gains are less clear.",
     "label": "15 Hz beta — adult ADHD study support (subjective)",
@@ -94,7 +100,25 @@
     "notes": "8 min. Adult ADHD RCT improved subjective study performance only - objective attention measures were unchanged. Requires headphones."
   },
   {
+    "id": "white-noise-adhd",
+    "icon": "🎧",
+    "headline": "Focus for inattentive minds (ADHD)",
+    "blurb": "Steady white noise studied in children and adults with inattention. Plays quietly in the background while you work.",
+    "label": "White noise — ADHD / inattention (stochastic resonance)",
+    "modality": "white-noise",
+    "synthesis": { "noise": "white", "level": 0.15 },
+    "doseSec": 1800,
+    "tier": "B",
+    "citations": [
+      { "title": "Listen to the noise: noise is beneficial for cognitive performance in ADHD", "journal": "Journal of Child Psychology and Psychiatry", "year": 2007, "url": "https://acamh.onlinelibrary.wiley.com/doi/10.1111/j.1469-7610.2007.01749.x" },
+      { "title": "Auditory white noise benefits memory recall in children with attention problems", "journal": "Frontiers in Psychiatry", "year": 2022, "url": "https://www.frontiersin.org/journals/psychiatry/articles/10.3389/fpsyt.2022.1031096/full" },
+      { "title": "White noise improves learning by modulating activity in dopaminergic midbrain regions", "journal": "Scientific Reports", "year": 2019, "url": "https://www.nature.com/articles/s41598-019-43856-6" }
+    ],
+    "notes": "Background listening at low volume, 20-30 min. Effect is strongest for people with attention deficits (stochastic resonance hypothesis); may mildly hurt focus in low-ADHD listeners."
+  },
+  {
     "id": "vibroacoustic-40",
+    "icon": "🪑",
     "headline": "Fibromyalgia pain relief (hardware only)",
     "blurb": "A 40 Hz vibration delivered through a chair or bed — not through headphones. We can't play this here; the studies are for your reference.",
     "label": "40 Hz vibroacoustic (fibromyalgia)",

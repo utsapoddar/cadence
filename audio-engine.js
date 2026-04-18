@@ -62,6 +62,27 @@ function buildBinaural({ baseHz, beatHz }) {
   return { nodes: [left, right, lGain, rGain, merger, out], outGain: out };
 }
 
+function makeWhiteNoiseBuffer(seconds = 10) {
+  const c = getCtx();
+  const buf = c.createBuffer(2, c.sampleRate * seconds, c.sampleRate);
+  for (let ch = 0; ch < 2; ch++) {
+    const data = buf.getChannelData(ch);
+    for (let i = 0; i < data.length; i++) data[i] = Math.random() * 2 - 1;
+  }
+  return buf;
+}
+
+function buildWhiteNoise({ level }) {
+  const c = getCtx();
+  const src = c.createBufferSource();
+  src.buffer = makeWhiteNoiseBuffer(10);
+  src.loop = true;
+  const out = c.createGain(); out.gain.value = level ?? 0.15;
+  src.connect(out).connect(c.destination);
+  src.start();
+  return { nodes: [src, out], outGain: out };
+}
+
 function buildNotch({ centerHz, notchBandwidthOctaves }) {
   const c = getCtx();
   const src = c.createBufferSource();
@@ -97,6 +118,7 @@ export function play(spec, durationSec, onEnd) {
   let graph;
   if (spec.modality === 'am') graph = buildAM(spec.synthesis);
   else if (spec.modality === 'binaural') graph = buildBinaural(spec.synthesis);
+  else if (spec.modality === 'white-noise') graph = buildWhiteNoise(spec.synthesis);
   else if (spec.modality === 'notch') {
     if (!spec.synthesis.centerHz) throw new Error('tinnitus pitch required');
     graph = buildNotch({ centerHz: spec.synthesis.centerHz, notchBandwidthOctaves: spec.synthesis.notchBandwidthOctaves });
