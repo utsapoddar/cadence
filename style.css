@@ -251,13 +251,6 @@ main {
   border-bottom: 1px dashed var(--line);
 }
 
-.meta-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.25rem;
-}
-
 .slot {
   font-family: var(--font-mono);
   font-size: .7rem;

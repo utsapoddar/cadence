@@ -28,7 +28,11 @@ function renderCard(card, index) {
     ? `<div class="freq-readout"><span class="value">${freqHz}</span><span class="unit">${typeof freqHz === 'number' || freqHz === '40' ? 'Hz' : ''}</span><span class="mode">${card.modality || ''}</span></div>`
     : '';
 
-  const slot = `<div class="slot"><span class="glyph">✧</span><span class="mono">MODULE · ${slotNum}</span></div>`;
+  const slot = `<div class="slot">
+    <span class="glyph">✧</span>
+    <span class="mono">MODULE · ${slotNum}</span>
+    ${card.icon ? `<span class="icon" aria-hidden="true">${escapeHtml(card.icon)}</span>` : ''}
+  </div>`;
 
   const cites = card.citations.map(c =>
     `<a class="cite" target="_blank" rel="noopener" href="${escapeHtml(c.url)}">${escapeHtml(c.title)} — ${escapeHtml(c.journal)}, ${c.year}</a>`
@@ -61,10 +65,7 @@ function renderCard(card, index) {
   return `
     <section class="card${infoClass}" data-id="${card.id}">
       <div class="card-head">
-        <div class="meta-row">
-          ${slot}
-          ${icon}
-        </div>
+        ${slot}
         ${freqReadout}
         <h2>${headline}<span class="tier ${card.tier}">Tier ${card.tier}</span></h2>
         <button class="info" data-info="${card.id}" aria-label="Show technical details and studies">i</button>
