@@ -14,14 +14,29 @@ function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 
-function renderCard(card) {
+function renderCard(card, index) {
+  const slotNum = String((index || 0) + 1).padStart(3, '0');
+  let freqHz = '';
+  if (card.synthesis) {
+    freqHz = card.synthesis.modHz || card.synthesis.beatHz || card.synthesis.centerHz || '';
+  }
+  if (card.id === 'tinnitus-notch') freqHz = 'VAR';
+  if (card.id === 'white-noise-adhd') freqHz = 'W/N';
+  if (card.id === 'vibroacoustic-40') freqHz = '40';
+
+  const freqReadout = freqHz 
+    ? `<div class="freq-readout"><span class="value">${freqHz}</span><span class="unit">${typeof freqHz === 'number' || freqHz === '40' ? 'Hz' : ''}</span><span class="mode">${card.modality || ''}</span></div>`
+    : '';
+
+  const slot = `<div class="slot"><span class="glyph">✧</span><span class="mono">MODULE · ${slotNum}</span></div>`;
+
   const cites = card.citations.map(c =>
     `<a class="cite" target="_blank" rel="noopener" href="${escapeHtml(c.url)}">${escapeHtml(c.title)} — ${escapeHtml(c.journal)}, ${c.year}</a>`
   ).join('');
   const disclosure = card.tier === 'C'
     ? `<div class="disclosure">${escapeHtml(card.notes)}</div>` : '';
   const playBtn = card.tier === 'C'
-    ? '' : `<button class="play" data-play="${card.id}">Play · ${fmtDose(card.doseSec)}</button>`;
+    ? '' : `<button class="play" data-play="${card.id}"><div class="led"></div><span class="label">Play</span><span class="dose-txt">${fmtDose(card.doseSec)}</span></button>`;
   const progress = card.tier === 'C' ? '' : `
     <div class="progress"><div class="fill" data-fill="${card.id}"></div></div>
     <div class="remaining" data-remaining="${card.id}"></div>`;
@@ -36,18 +51,26 @@ function renderCard(card) {
       <div class="dose">Protocol dose: ${fmtDose(card.doseSec) || '—'}</div>
       <div class="citations">${cites}</div>
     </div>`;
+    
+  const controls = card.tier === 'C' ? '' : `
+    <div class="controls">
+      ${progress}
+      ${playBtn}
+    </div>`;
+
   return `
     <section class="card${infoClass}" data-id="${card.id}">
       <div class="card-head">
+        ${slot}
         ${icon}
+        ${freqReadout}
         <h2>${headline}<span class="tier ${card.tier}">Tier ${card.tier}</span></h2>
         <button class="info" data-info="${card.id}" aria-label="Show technical details and studies">i</button>
       </div>
       ${blurb}
       ${disclosure}
       ${details}
-      ${progress}
-      ${playBtn}
+      ${controls}
     </section>`;
 }
 
@@ -81,10 +104,10 @@ async function onPlayClick(id) {
 function updateButtons() {
   document.querySelectorAll('button[data-play]').forEach(btn => {
     const id = btn.getAttribute('data-play');
-    const card = state.data.find(d => d.id === id);
-    btn.textContent = id === state.activeId
-      ? '■ Stop'
-      : `▶ Play · ${fmtDose(card.doseSec)}`;
+    const label = btn.querySelector('.label');
+    if (label) {
+      label.textContent = id === state.activeId ? 'Stop' : 'Play';
+    }
   });
   document.querySelectorAll('.card').forEach(el => {
     el.classList.toggle('playing', el.getAttribute('data-id') === state.activeId);

@@ -3,30 +3,66 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cadence — Evidence-Based Tones</title>
+  <title>Cadence — Audio Therapeutics, Peer-Reviewed</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400;1,9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Cadence</h1>
-    <p class="tagline">Therapeutic tones with citations. Not a medical device.</p>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <header class="masthead">
+    <div class="mast-meta">
+      <span class="mono">VOL. 01 · ISSUE 08</span>
+      <span class="mono dim">◦ ON AIR</span>
+    </div>
+    <h1 class="wordmark">
+      <span class="cad">Cadence</span><span class="period">.</span>
+    </h1>
+    <p class="tagline">
+      <em>Audio therapeutics,</em> peer-reviewed &mdash;
+      <span class="mono">eight modules, cited at source.</span>
+    </p>
+    <div class="legend">
+      <span class="legend-item"><span class="dot tierA"></span><span class="mono">CLASS&nbsp;A · RCT</span></span>
+      <span class="legend-item"><span class="dot tierB"></span><span class="mono">CLASS&nbsp;B · PILOT</span></span>
+      <span class="legend-item"><span class="dot tierC"></span><span class="mono">CLASS&nbsp;C · TACTILE</span></span>
+    </div>
   </header>
+
   <main id="cards">
-    <div id="audio-banner" hidden>Tap any card to enable audio.</div>
+    <div id="audio-banner" hidden>
+      <span class="mono">⟡ tap any module to enable audio output</span>
+    </div>
   </main>
+
   <dialog id="tinnitus-modal">
-    <h2>Match your tinnitus pitch</h2>
-    <p>Adjust the slider until the tone matches the pitch of your tinnitus. Keep the volume low.</p>
-    <input id="tinnitus-slider" type="range" min="100" max="8000" step="10" value="4000">
-    <output id="tinnitus-freq">4000 Hz</output>
+    <div class="modal-head">
+      <span class="mono">MODULE · 002 / TINNITUS MATCHER</span>
+    </div>
+    <h2>Tune to your tinnitus pitch.</h2>
+    <p>Adjust the probe until it sits exactly on top of your ringing. Keep the volume low.</p>
+    <div class="probe">
+      <output id="tinnitus-freq" class="freq-big">4000<span>Hz</span></output>
+      <input id="tinnitus-slider" type="range" min="100" max="8000" step="10" value="4000">
+      <div class="scale"><span class="mono">100</span><span class="mono">8000</span></div>
+    </div>
     <div class="modal-actions">
       <button id="tinnitus-cancel">Cancel</button>
-      <button id="tinnitus-save">This matches</button>
+      <button id="tinnitus-save">Lock in</button>
     </div>
   </dialog>
+
   <footer>
-    <p>Every card links to its peer-reviewed source. Not a substitute for professional care.</p>
+    <div class="foot-rule"></div>
+    <p class="mono">
+      every module links to its peer-reviewed source · not a medical device ·
+      <a href="https://github.com/utsapoddar/cadence" target="_blank" rel="noopener">source on github</a>
+    </p>
   </footer>
+
   <script type="module" src="ui.js"></script>
 </body>
 </html>
