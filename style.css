@@ -292,7 +292,7 @@ main {
 /* info button */
 .card button.info {
   position: absolute;
-  top: 1rem; right: 1rem;
+  top: 0; right: 0;
   background: transparent;
   color: var(--ink-dim);
   border: 1px solid var(--line-hi);
@@ -339,7 +339,7 @@ main {
 .card-head > .mode {
   position: absolute;
   right: 0;
-  top: 50%;
+  top: 2.2rem;
   font-family: var(--font-mono);
   font-size: .6rem;
   font-weight: 500;
