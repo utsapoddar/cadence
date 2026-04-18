@@ -339,7 +339,8 @@ main {
 .card-head > .mode {
   position: absolute;
   right: 0;
-  top: 2.2rem;
+  top: 50%;
+  transform: translateY(-50%);
   font-family: var(--font-mono);
   font-size: .6rem;
   font-weight: 500;
