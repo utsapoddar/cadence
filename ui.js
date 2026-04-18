@@ -21,18 +21,28 @@ function renderCard(card) {
   const disclosure = card.tier === 'C'
     ? `<div class="disclosure">${escapeHtml(card.notes)}</div>` : '';
   const playBtn = card.tier === 'C'
-    ? '' : `<button data-play="${card.id}">Play · ${fmtDose(card.doseSec)}</button>`;
+    ? '' : `<button class="play" data-play="${card.id}">Play · ${fmtDose(card.doseSec)}</button>`;
   const remaining = card.tier === 'C'
     ? '' : `<div class="remaining" data-remaining="${card.id}"></div>`;
   const infoClass = card.tier === 'C' ? ' info-only' : '';
-  const descNotes = card.tier === 'C' ? '' : `<p>${escapeHtml(card.notes)}</p>`;
+  const headline = escapeHtml(card.headline || card.label);
+  const blurb = card.blurb ? `<p class="blurb">${escapeHtml(card.blurb)}</p>` : '';
+  const details = `
+    <div class="details" data-details="${card.id}" hidden>
+      <div class="tech-label">${escapeHtml(card.label)}</div>
+      <div class="tech-note">${escapeHtml(card.notes)}</div>
+      <div class="dose">Protocol dose: ${fmtDose(card.doseSec) || '—'}</div>
+      <div class="citations">${cites}</div>
+    </div>`;
   return `
     <section class="card${infoClass}" data-id="${card.id}">
-      <h2>${escapeHtml(card.label)}<span class="tier ${card.tier}">Tier ${card.tier}</span></h2>
-      <div class="dose">Protocol dose: ${fmtDose(card.doseSec) || '—'}</div>
-      ${descNotes}
+      <div class="card-head">
+        <h2>${headline}<span class="tier ${card.tier}">Tier ${card.tier}</span></h2>
+        <button class="info" data-info="${card.id}" aria-label="Show technical details and studies">i</button>
+      </div>
+      ${blurb}
       ${disclosure}
-      ${cites}
+      ${details}
       ${remaining}
       ${playBtn}
     </section>`;
@@ -97,8 +107,15 @@ async function init() {
   const banner = document.getElementById('audio-banner');
   host.insertAdjacentHTML('beforeend', state.data.map(renderCard).join(''));
   host.addEventListener('click', e => {
-    const btn = e.target.closest('button[data-play]');
-    if (btn) onPlayClick(btn.getAttribute('data-play'));
+    const playBtn = e.target.closest('button[data-play]');
+    if (playBtn) { onPlayClick(playBtn.getAttribute('data-play')); return; }
+    const infoBtn = e.target.closest('button[data-info]');
+    if (infoBtn) {
+      const id = infoBtn.getAttribute('data-info');
+      const panel = document.querySelector(`[data-details="${id}"]`);
+      if (panel) panel.hidden = !panel.hidden;
+      infoBtn.classList.toggle('open', panel && !panel.hidden);
+    }
   });
   try {
     const testCtx = new (window.AudioContext || window.webkitAudioContext)();

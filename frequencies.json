@@ -1,6 +1,8 @@
 [
   {
     "id": "gamma-40",
+    "headline": "Sharpen focus & memory",
+    "blurb": "A pulsing tone used in Alzheimer's and attention research. Listen while you work or read.",
     "label": "40 Hz gamma — cognition & attention",
     "modality": "am",
     "synthesis": { "carrierHz": 1000, "modHz": 40, "modDepth": 0.5 },
@@ -14,6 +16,8 @@
   },
   {
     "id": "tinnitus-notch",
+    "headline": "Quiet your tinnitus",
+    "blurb": "Pink noise with a notch removed at your tinnitus pitch. Calibrate once, then listen long-term.",
     "label": "Tinnitus notched pink noise",
     "modality": "notch",
     "synthesis": { "noise": "pink", "notchBandwidthOctaves": 1.0, "centerHzFromUser": true },
@@ -27,6 +31,8 @@
   },
   {
     "id": "delta-3",
+    "headline": "Fall into deeper sleep",
+    "blurb": "A slow binaural pulse used in sleep studies. Play it as you wind down — headphones on.",
     "label": "3 Hz delta — sleep support",
     "modality": "binaural",
     "synthesis": { "baseHz": 200, "beatHz": 3 },
@@ -39,6 +45,8 @@
   },
   {
     "id": "theta-6",
+    "headline": "Calm down & unwind",
+    "blurb": "A gentle binaural pulse linked to meditation and anxiety reduction. Headphones on.",
     "label": "6 Hz theta — relaxation",
     "modality": "binaural",
     "synthesis": { "baseHz": 240, "beatHz": 6 },
@@ -51,6 +59,8 @@
   },
   {
     "id": "alpha-10",
+    "headline": "Relax & lift mood",
+    "blurb": "A binaural pulse studied for mood support and relaxation. Play it during a quiet break.",
     "label": "10 Hz alpha — relaxation / mood",
     "modality": "binaural",
     "synthesis": { "baseHz": 220, "beatHz": 10 },
@@ -63,6 +73,8 @@
   },
   {
     "id": "beta-15",
+    "headline": "Study-session boost (adult ADHD)",
+    "blurb": "A short binaural track trialed with adult ADHD students. Improves how focused you feel — objective attention gains are less clear.",
     "label": "15 Hz beta — adult ADHD study support (subjective)",
     "modality": "binaural",
     "synthesis": { "baseHz": 250, "beatHz": 15 },
@@ -75,7 +87,9 @@
   },
   {
     "id": "vibroacoustic-40",
-    "label": "40 Hz vibroacoustic (fibromyalgia) — info only",
+    "headline": "Fibromyalgia pain relief (hardware only)",
+    "blurb": "A 40 Hz vibration delivered through a chair or bed — not through headphones. We can't play this here; the studies are for your reference.",
+    "label": "40 Hz vibroacoustic (fibromyalgia)",
     "modality": "info-only",
     "synthesis": null,
     "doseSec": null,
