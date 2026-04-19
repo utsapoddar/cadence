@@ -253,8 +253,15 @@ async function init() {
     if (infoBtn) {
       const id = infoBtn.getAttribute('data-info');
       const panel = document.querySelector(`[data-details="${id}"]`);
-      if (panel) panel.hidden = !panel.hidden;
-      infoBtn.classList.toggle('open', panel && !panel.hidden);
+      const willOpen = panel && panel.hidden;
+      document.querySelectorAll('[data-details]').forEach(p => {
+        if (p !== panel) p.hidden = true;
+      });
+      document.querySelectorAll('button[data-info]').forEach(b => {
+        if (b !== infoBtn) b.classList.remove('open');
+      });
+      if (panel) panel.hidden = !willOpen;
+      infoBtn.classList.toggle('open', !!willOpen);
     }
   });
   try {
