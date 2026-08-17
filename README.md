@@ -33,7 +33,10 @@ Included: only frequencies with published peer-reviewed clinical support — RCT
 
 Excluded by design: solfeggio frequencies, chakra tuning, Schumann-resonance therapy claims, un-phase-locked pink noise for sleep (the Northwestern protocol requires real-time EEG locking that can't ship in-browser), and any "entrainment" claims not backed by neuroscience literature.
 
-See `docs/superpowers/specs/2026-04-18-cadence-design.md` for the full curation rationale.
+Two further rules follow from that policy. Delivery method is locked to whatever the cited
+study used — AM-modulated, binaural, or notched — rather than left to the user, and session
+durations default to the study protocol, with an explicit warning on override. Cadence is
+not a medical device and does not make treatment recommendations.
 
 ## Project Structure
 
@@ -45,12 +48,9 @@ cadence/
 ├── audio-engine.js         # Web Audio graph builders (AM / binaural / notch / white noise)
 ├── tinnitus-matcher.js     # Pitch-matching modal with localStorage persistence
 ├── frequencies.json        # Module catalog (headline, blurb, synthesis, citations)
-├── scripts/
-│   ├── verify_tones.py     # Offline WAV generator for A/B verification
-│   └── requirements.txt    # numpy, scipy
-└── docs/superpowers/
-    ├── specs/              # Design spec (evidence policy, architecture)
-    └── plans/              # Implementation plan
+└── scripts/
+    ├── verify_tones.py     # Offline WAV generator for A/B verification
+    └── requirements.txt    # numpy, scipy
 ```
 
 ## Tech Stack
