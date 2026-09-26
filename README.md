@@ -8,7 +8,9 @@ Evidence-backed audio therapeutics, peer-reviewed. Eight sound "modules" — foc
 
 [![Cadence architecture diagram](docs/media/architecture.png)](docs/media/architecture.png)
 
-**[Watch the one-minute project explainer →](docs/media/explainer.mp4)**
+### Video walkthrough
+
+https://github.com/user-attachments/assets/bd17233d-b5e9-4b37-951c-9e9ebf2ce085
 
 ## How It Works
 
