@@ -4,6 +4,12 @@ Evidence-backed audio therapeutics, peer-reviewed. Eight sound "modules" — foc
 
 **[Launch Cadence →](https://utsapoddar.github.io/cadence/)**
 
+## Architecture and walkthrough
+
+[![Cadence architecture diagram](docs/media/architecture.png)](docs/media/architecture.png)
+
+**[Watch the one-minute project explainer →](docs/media/explainer.mp4)**
+
 ## How It Works
 
 A zero-build static web app served from GitHub Pages. Every sound is synthesized live in the browser with the Web Audio API — no audio files ever downloaded.
